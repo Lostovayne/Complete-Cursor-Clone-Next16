@@ -16,6 +16,7 @@ export const create = mutation({
 export const get = query({
   args: {},
   handler: async (ctx) => {
+    // Return de user auth information
     return await ctx.db.query("projects").collect();
   },
 });
