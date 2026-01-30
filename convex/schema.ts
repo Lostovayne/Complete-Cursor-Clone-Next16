@@ -6,7 +6,7 @@ export default defineSchema({
     name: v.string(),
     ownerId: v.string(),
     importStatus: v.optional(
-      v.union(v.literal("importing"), v.literal("completed"), v.literal("failed"))
+      v.union(v.literal("importing"), v.literal("completed"), v.literal("failed")),
     ),
   }).index("by_owner", ["ownerId"]),
 });
