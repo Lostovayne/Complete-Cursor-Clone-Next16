@@ -91,7 +91,7 @@ sequenceDiagram
 ### Prerequisites
 
 - Node.js 18+
-- pnpm / npm / yarn / bun
+- pnpm (recommended) — también funcionan `npm`, `yarn` o `bun`, pero este repo usa `pnpm` por consistencia
 - Convex account + deployed project
 
 ### Installation
@@ -101,13 +101,15 @@ git clone <your-repo-url>
 cd cursor-clone
 ```
 
+Instala dependencias con `pnpm` (recomendado):
+
 ```bash
-npm install
+pnpm install
 ```
 
 ### Environment Variables
 
-Create a `.env.local` with your required environment variables (Convex + AI keys). Example:
+Copia `.env.example` a `.env.local` y rellena las variables necesarias (Convex + AI keys). Ejemplo mínimo:
 
 ```bash
 CONVEX_DEPLOYMENT=
@@ -117,8 +119,10 @@ CLAUDE_API_KEY=
 
 ### Run the App
 
+Usa `pnpm` para iniciar el entorno de desarrollo:
+
 ```bash
-npm run dev
+pnpm dev
 ```
 
 Open http://localhost:3000 to view the application.
