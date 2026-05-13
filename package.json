@@ -2,12 +2,18 @@
   "name": "cursor-clone",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": ">=24",
+    "pnpm": ">=11"
+  },
   "scripts": {
     "dev": "next dev",
-    "dev:all": "concurrently \"npm run dev\" \"npm run convex:dev\" \"npm run inngest:dev\"",
+    "dev:all": "concurrently \"pnpm run dev\" \"pnpm run convex:dev\" \"pnpm run inngest:dev\"",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint",
+    "lint": "eslint . --ext .ts,.tsx --max-warnings=0",
+    "typecheck": "tsc --noEmit",
+    "check": "pnpm run lint && pnpm run typecheck",
     "convex:dev": "npx convex dev",
     "inngest:dev": "npx --ignore-scripts=false inngest-cli@latest dev"
   },

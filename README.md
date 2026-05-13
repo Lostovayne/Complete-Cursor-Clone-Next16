@@ -90,8 +90,8 @@ sequenceDiagram
 
 ### Prerequisites
 
-- Node.js 18+
-- pnpm (recommended) — también funcionan `npm`, `yarn` o `bun`, pero este repo usa `pnpm` por consistencia
+- Node.js 24+ (recomendado)
+- pnpm v11 (recomendado) — también funcionan `npm`, `yarn` o `bun`, pero este repo usa `pnpm` por consistencia
 - Convex account + deployed project
 
 ### Installation
