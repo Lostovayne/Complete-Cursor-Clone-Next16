@@ -1,0 +1,30 @@
+{
+	"subagents": {
+		"agentOverrides": {
+			"context-builder": {
+				"model": "github-copilot/gpt-5-mini"
+			},
+			"delegate": {
+				"model": "github-copilot/gpt-5-mini"
+			},
+			"oracle": {
+				"model": "github-copilot/gpt-5-mini"
+			},
+			"planner": {
+				"model": "github-copilot/gpt-5-mini"
+			},
+			"researcher": {
+				"model": "github-copilot/gpt-5-mini"
+			},
+			"reviewer": {
+				"model": "github-copilot/gpt-5-mini"
+			},
+			"scout": {
+				"model": "github-copilot/gpt-5-mini"
+			},
+			"worker": {
+				"model": "github-copilot/gpt-5-mini"
+			}
+		}
+	}
+}
