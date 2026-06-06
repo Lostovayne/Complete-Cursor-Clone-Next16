@@ -6,83 +6,50 @@
 		<img alt="React" src="https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=black" />
 		<img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white" />
 		<img alt="Convex" src="https://img.shields.io/badge/Convex-Realtime-5B2EE5?logo=convex&logoColor=white" />
-		<img alt="CodeMirror" src="https://img.shields.io/badge/CodeMirror-6-1E1E1E?logo=codemirror&logoColor=white" />
-		<img alt="Claude" src="https://img.shields.io/badge/Claude-AI-000000?logo=anthropic&logoColor=white" />
+		<img alt="Tailwind" src="https://img.shields.io/badge/Tailwind-4-06B6D4?logo=tailwindcss&logoColor=white" />
+		<img alt="Google AI" src="https://img.shields.io/badge/Google-Gemini-4285F4?logo=google&logoColor=white" />
 	</p>
 </div>
 
-**Polaris** is a full-featured, AI-powered real-time code editor built from the ground up. It delivers a professional developer experience with a CodeMirror 6 editor (syntax highlighting, code folding, minimap), AI-powered code suggestions and quick edits using Claude, and background job execution for AI agents.
-
-Built on **Next.js 16**, **Convex** for real-time data, and modern performance-first architecture.
+**Polaris** is an AI-powered real-time code editor designed for professional developer workflows. Built on Next.js 16 with Convex for real-time data, it provides a modern foundation for collaborative coding with AI assistance.
 
 ---
 
 ## ✨ Highlights
 
-- **Real-time collaboration** with low-latency updates powered by Convex.
-- **Pro-grade editor**: CodeMirror 6 with syntax highlighting, folding, minimap, and extensible plugins.
-- **AI assistance**: Claude-backed suggestions, quick edits, and background agent jobs.
-- **Performance-focused**: streaming UI, edge-friendly design, and optimized rendering paths.
-- **Modern stack**: Next.js App Router, TypeScript, Tailwind UI components, and scalable architecture.
+- **Real-time data** powered by Convex with live queries and mutations.
+- **AI-assisted coding** using Google Gemini for code generation and suggestions.
+- **Background job execution** via Inngest for async AI workflows.
+- **Authentication** with Clerk for secure user sessions.
+- **Modern UI** with Tailwind CSS, Radix primitives, and shadcn/ui components.
+- **Monitoring** with Sentry for error tracking and performance insights.
 
 ---
 
-## 🧭 Product Overview
+## 🧭 Current Status
 
-Polaris is designed as a professional DE that feels instant and intelligent. The editor is the core, but the platform layers in AI workflows, real-time collaboration, and job orchestration to support serious developer use cases.
+Polaris is in **early development**. The foundation is set up with:
 
-### Core Capabilities
-
-- **Editor UX**: custom commands, rich keyboard workflow, and multi-pane layout.
-- **AI workflows**: contextual suggestions, rewrite/quick edit, and agent-driven tasks.
-- **Real-time data**: presence, collaborative updates, and low-latency syncing.
-- **Scalable architecture**: background jobs and asynchronous workflows for agent execution.
-
----
-
-## 🧩 Architecture
-
-```mermaid
-flowchart LR
-	User((Developer)) --> UI[Next.js 16 App Router]
-	UI --> CM[CodeMirror 6 Editor]
-	UI --> AI[Claude AI Services]
-	UI --> Convex[Convex Realtime Backend]
-	Convex --> DB[(Convex Storage)]
-	AI --> Jobs[Background Job Runner]
-	Jobs --> Convex
-```
-
-### Data & Collaboration Flow
-
-```mermaid
-sequenceDiagram
-	participant U as User
-	participant UI as Next.js UI
-	participant C as Convex Realtime
-	participant A as AI Agent
-
-	U->>UI: Edit code
-	UI->>C: Publish change
-	C-->>UI: Broadcast updates
-	UI->>A: Request AI suggestion
-	A-->>UI: Return patch
-```
+- ✅ Authentication flow (Clerk)
+- ✅ Real-time database (Convex)
+- ✅ Background jobs (Inngest)
+- ✅ Error monitoring (Sentry)
+- ✅ Modern UI components (Radix + shadcn/ui)
+- 🔲 CodeMirror editor integration
+- 🔲 AI-powered code suggestions
+- 🔲 Real-time collaboration features
 
 ---
 
 ## ⚙️ Tech Stack
 
-<p>
-	<img src="https://skillicons.dev/icons?i=nextjs,react,ts,tailwind,nodejs" alt="Tech icons" />
-</p>
-
-- **Frontend**: Next.js 16 (App Router), React, TypeScript
-- **Editor**: CodeMirror 6
+- **Frontend**: Next.js 16 (App Router), React 19, TypeScript 5
+- **Styling**: Tailwind CSS 4, Radix UI, shadcn/ui
 - **Realtime**: Convex
-- **UI**: Tailwind CSS + component library
-- **AI**: Claude for suggestions and quick edits
-- **Infra**: Modern performance-first patterns, background jobs
+- **AI**: Google Gemini (via Vercel AI SDK)
+- **Auth**: Clerk
+- **Background Jobs**: Inngest
+- **Monitoring**: Sentry
 
 ---
 
@@ -90,72 +57,89 @@ sequenceDiagram
 
 ### Prerequisites
 
-- Node.js 24+ (recomendado)
-- pnpm v11 (recomendado) — también funcionan `npm`, `yarn` o `bun`, pero este repo usa `pnpm` por consistencia
+- Node.js 24+
+- pnpm 11+
 - Convex account + deployed project
+- Clerk account
+- Google AI API key
+- Inngest account
 
 ### Installation
 
 ```bash
 git clone <your-repo-url>
 cd cursor-clone
-```
-
-Instala dependencias con `pnpm` (recomendado):
-
-```bash
 pnpm install
 ```
 
 ### Environment Variables
 
-Copia `.env.example` a `.env.local` y rellena las variables necesarias (Convex + AI keys). Ejemplo mínimo:
+Copy `.env.example` to `.env.local` and fill in the required values:
 
 ```bash
-CONVEX_DEPLOYMENT=
-NEXT_PUBLIC_CONVEX_URL=
-CLAUDE_API_KEY=
+cp .env.example .env.local
 ```
+
+Required variables:
+- `CLERK_SECRET_KEY` - Clerk secret key
+- `CLERK_JWT_ISSUER_DOMAIN` - Clerk JWT issuer
+- `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY` - Clerk publishable key
+- `CONVEX_DEPLOYMENT` - Convex deployment URL
+- `NEXT_PUBLIC_CONVEX_URL` - Convex public URL
+- `GOOGLE_GENERATIVE_AI_API_KEY` - Google AI API key
+- `SENTRY_AUTH_TOKEN` - Sentry auth token
 
 ### Run the App
 
-Usa `pnpm` para iniciar el entorno de desarrollo:
+Start all services (Next.js, Convex, Inngest):
 
 ```bash
+pnpm dev:all
+```
+
+Or run them separately:
+
+```bash
+# Terminal 1 - Next.js
 pnpm dev
+
+# Terminal 2 - Convex
+pnpm convex:dev
+
+# Terminal 3 - Inngest
+pnpm inngest:dev
 ```
 
 Open http://localhost:3000 to view the application.
 
 ---
 
-## 🧪 Quality & Performance
+## 📁 Project Structure
 
-- **Real-time latency budget** optimized via Convex subscriptions.
-- **Streaming UI** for large documents and AI responses.
-- **Background jobs** for non-blocking AI agent work.
-- **Typed end-to-end** for reliability in real-time workflows.
-
----
-
-## 📁 Project Structure (High Level)
-
-- `app/` – Next.js App Router pages and layouts
-- `components/` – UI components and shared building blocks
-- `convex/` – Realtime functions, schema, and backend logic
-- `hooks/` – Client hooks and runtime helpers
-- `lib/` – Utilities and shared helpers
+```
+├── app/                    # Next.js App Router pages and layouts
+├── components/             # Shared UI components
+│   └── ui/                 # shadcn/ui components
+├── convex/                 # Convex functions, schema, and backend logic
+├── features/               # Feature-specific modules
+│   └── auth/               # Authentication components
+├── hooks/                  # React hooks
+├── inngest/                # Background job functions
+├── lib/                    # Utility functions and helpers
+└── public/                 # Static assets
+```
 
 ---
 
 ## 🧑‍💻 Contributing
 
-We welcome contributions from developers who want to enhance the experience of Polaris.
+Contributions are welcome! Please follow these steps:
 
-1. Fork the repo
-2. Create a feature branch
-3. Commit changes with clear messages
-4. Open a pull request
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feat/amazing-feature`)
+3. Commit your changes (`git commit -m 'feat: add amazing feature'`)
+4. Push to the branch (`git push origin feat/amazing-feature`)
+5. Open a Pull Request
 
 ---
 
@@ -167,10 +151,10 @@ This project is licensed under the MIT License.
 
 ## 🔒 Security
 
-If you discover a security issue, please report it privately and responsibly.
+If you discover a security vulnerability, please report it responsibly. Do not open a public issue.
 
 ---
 
 ## 📬 Contact
 
-For business or partnership inquiries, open an issue or contact the maintainer.
+For questions or collaboration, open an issue or reach out to the maintainer.
