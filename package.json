@@ -3,17 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "engines": {
-    "node": ">=24",
-    "pnpm": ">=11"
+    "node": ">=24"
   },
   "scripts": {
     "dev": "next dev",
-    "dev:all": "concurrently \"pnpm run dev\" \"pnpm run convex:dev\" \"pnpm run inngest:dev\"",
+    "dev:all": "concurrently \"bun run dev\" \"bun run convex:dev\" \"bun run inngest:dev\"",
     "build": "next build",
     "start": "next start",
     "lint": "eslint . --ext .ts,.tsx --max-warnings=0",
     "typecheck": "tsc --noEmit",
-    "check": "pnpm run lint && pnpm run typecheck",
+    "check": "bun run lint && bun run typecheck",
     "convex:dev": "npx convex dev",
     "inngest:dev": "npx --ignore-scripts=false inngest-cli@latest dev"
   },
