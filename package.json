@@ -14,7 +14,7 @@
     "typecheck": "tsc --noEmit",
     "check": "bun run lint && bun run typecheck",
     "convex:dev": "npx convex dev",
-    "inngest:dev": "npx --ignore-scripts=false inngest-cli@latest dev"
+    "inngest:dev": "inngest dev -u http://localhost:3000/api/inngest"
   },
   "dependencies": {
     "@ai-sdk/google": "^3.0.80",
@@ -72,6 +72,9 @@
     "vaul": "^1.1.2",
     "zod": "^4.4.3"
   },
+  "trustedDependencies": [
+    "inngest-cli"
+  ],
   "devDependencies": {
     "@tailwindcss/postcss": "^4.3.0",
     "@types/node": "^20.19.41",
@@ -80,6 +83,7 @@
     "concurrently": "^9.2.1",
     "eslint": "^9.39.4",
     "eslint-config-next": "16.1.1",
+    "inngest-cli": "latest",
     "tailwindcss": "^4.3.0",
     "tw-animate-css": "^1.4.0",
     "typescript": "^5.9.3"
