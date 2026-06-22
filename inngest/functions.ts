@@ -23,8 +23,8 @@ export const demoGenerate = inngest.createFunction(
         urls.map(async (url) => {
           const result = await firecrawl.scrapeUrl(url, {
             formats: ["markdown"],
-          });
-          return "markdown" in result ? result.markdown : null;
+          }) as { success: boolean; data?: { markdown?: string } };
+          return result.success ? result.data?.markdown ?? null : null;
         }),
       );
       return results.filter(Boolean).join("\n\n");
