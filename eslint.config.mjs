@@ -12,19 +12,13 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // shadcn/ui — third-party generated components, skip lint
+    "components/ui/**",
     // generated files
     "convex/_generated/**",
     // agent skills templates
     ".agents/**",
   ]),
-  // shadcn/ui components — relax rules for third-party generated code
-  {
-    files: ["components/ui/**"],
-    rules: {
-      "react-hooks/set-state-in-effect": "off",
-      "react-hooks/purity": "off",
-    },
-  },
 ]);
 
 export default eslintConfig;
