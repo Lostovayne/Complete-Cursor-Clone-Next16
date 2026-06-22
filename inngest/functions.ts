@@ -6,8 +6,10 @@ import { inngest } from "./client";
 const URL_REGEX = /https?:\/\/[^\s]+/g;
 
 export const demoGenerate = inngest.createFunction(
-  { id: "demo-generate" },
-  { event: "demo/generate" },
+  {
+    id: "demo-generate",
+    triggers: [{ event: "demo/generate" }],
+  },
   async ({ event, step }) => {
     // extraer del evento
     const { prompt } = event.data as { prompt: string };
@@ -22,7 +24,7 @@ export const demoGenerate = inngest.createFunction(
           const result = await firecrawl.scrapeUrl(url, {
             formats: ["markdown"],
           });
-          return result.success ? result.markdown : null;
+          return "markdown" in result ? result.markdown : null;
         }),
       );
       return results.filter(Boolean).join("\n\n");
@@ -48,8 +50,10 @@ export const demoGenerate = inngest.createFunction(
 );
 
 export const demoError = inngest.createFunction(
-  { id: "demo-error" },
-  { event: "demo/error" },
+  {
+    id: "demo-error",
+    triggers: [{ event: "demo/error" }],
+  },
   async ({ step }) => {
     await step.run("fail", async () => {
       throw new Error(
