@@ -200,7 +200,7 @@ function ChartTooltipContent({
           .map((item, index) => {
             const key = `${nameKey || item.name || item.dataKey || "value"}`
             const itemConfig = getPayloadConfigFromPayload(config, item, key)
-            const indicatorColor = color || (item.payload as Record<string, unknown>)?.["fill"] as string | undefined || item.color
+            const indicatorColor = color || (item.payload?.["fill"] as string) || item.color
 
             return (
               <div
@@ -342,28 +342,27 @@ function getPayloadConfigFromPayload(
     return undefined
   }
 
+  const payloadObj = payload as Record<string, unknown>
   const payloadPayload =
-    "payload" in (payload as Record<string, unknown>) &&
-    typeof (payload as Record<string, unknown>).payload === "object" &&
-    (payload as Record<string, unknown>).payload !== null
-      ? (payload as Record<string, unknown>).payload as Record<string, unknown>
+    "payload" in payloadObj &&
+    typeof payloadObj.payload === "object" &&
+    payloadObj.payload !== null
+      ? (payloadObj.payload as Record<string, unknown>)
       : undefined
 
   let configLabelKey: string = key
 
   if (
-    key in (payload as Record<string, unknown>) &&
-    typeof (payload as Record<string, unknown>)[key as keyof typeof payload] === "string"
+    key in payloadObj &&
+    typeof payloadObj[key] === "string"
   ) {
-    configLabelKey = (payload as Record<string, unknown>)[key as keyof typeof payload] as string
+    configLabelKey = payloadObj[key] as string
   } else if (
     payloadPayload &&
     key in payloadPayload &&
-    typeof payloadPayload[key as keyof typeof payloadPayload] === "string"
+    typeof payloadPayload[key] === "string"
   ) {
-    configLabelKey = payloadPayload[
-      key as keyof typeof payloadPayload
-    ] as string
+    configLabelKey = payloadPayload[key] as string
   }
 
   return configLabelKey in config
