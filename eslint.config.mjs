@@ -12,6 +12,12 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // shadcn/ui — third-party generated components
+    "components/ui/**",
+    // generated files
+    "convex/_generated/**",
+    // agent skills templates
+    ".agents/**",
   ]),
 ]);
 
