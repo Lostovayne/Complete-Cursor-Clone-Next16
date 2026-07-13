@@ -26,7 +26,9 @@ export const get = query({
       return [];
     }
 
-    // Return de user auth information
-    return await ctx.db.query("projects").collect();
+    return await ctx.db
+      .query("projects")
+      .withIndex("by_owner", (q) => q.eq("ownerId", identity.subject))
+      .collect();
   },
 });
